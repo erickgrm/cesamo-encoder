@@ -28,6 +28,7 @@ class PolynomialRegression(LinearRegression):
 
     @author github.com/erickgrm
 """
+import warnings
 import numpy as np
 
 class OddDegPolynomialRegression():
@@ -41,9 +42,8 @@ class OddDegPolynomialRegression():
 
     def fit(self, X, y):
         # Prepare data for numpy format
-        X = np.concatenate(X)
-        y = np.concatenate(y.values)
-
+        X, y = np.array(X), np.array(y)
+        
         self.model = np.polynomial.polynomial.Polynomial.fit(X, y, self.terms)
         self.coef = self.model.convert().coef
 
