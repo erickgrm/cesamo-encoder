@@ -81,6 +81,15 @@ def num_categorical_instances(df):
     return np.sum([len(instances[x]) for x in instances])
 
 
+def var_types(df, cat_cols):
+    categorical_var_list = []
+    for x in df.columns:
+        if is_categorical(df[x]) or x in cat_cols:
+            categorical_var_list.append(x)
+
+    return categorical_var_list
+
+
 def set_categories(df, cat_cols=[]):
     already_categorical = categorical_cols(df)
     cols = [x for x in cat_cols if x not in already_categorical]
